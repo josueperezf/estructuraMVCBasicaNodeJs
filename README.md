@@ -1,5 +1,7 @@
 ## infomacion general
+remote host ``` https://restserver-basica-node.herokuapp.com/api/usuarios?limite=1 ```
 
+si entramos a nuestra url de heroku y no esta o aparece unas ZzZz es que heroku pauso nuestra app no estarla usando desde hace tiempo, para ello debemos ingresar a nuestra cuenta de heroku, ir a nuestra aplicacion y seleccionar open app, con ello se activa nuestra app nuevamente
 ## Notas
 
 1. *Middleware:* en node identificamos que hay un middleware, cuando se utiliza lo siguiente app.use(xxx), lo que esta dentro de los parentesis es un middleware
@@ -27,3 +29,16 @@ este proyecto realiza conexion con mongo atlas desde la pagina <https://www.mong
  2. luego fuimos a la seccion de *acceso a base de datos*, donde creamos un usuario con su password
 
  3. en la seccion de cluster, presionamos *conectar*, alli nos va a realizar preguntas, entre las que destaca, que debemos seleccionar, que nos conectaremos con mongo pass, esto nos generara una *la cadena de conexión, luego abra MongoDB Compass.*, 'mongodb+srv://josueperezf:<password>@clustercursonodecafe.jrjer.mongodb.net/test' la cual debemos de pegar en muestro programa de mongo pass que debemos tener instalado en nuestra maquina, colocando  en password la clave que creamos en el paso 2. y donde esta test, colocamos cafeDb que es la que usaremos
+
+ ## Autenticacion por token
+
+el inicio de sesion para maximo 5000 usuarios, esta bien, requiere un mejor equipo, pero funciona, destaca que en la autenticacion basada en sesiones, el servidor controla cada equipo que este logueado, mientras que con los tokens no, esto ayuda al rendimiento de nuestro servidor
+
+### partes de un token
+
+1. *header:* contiene la infomacion del algoritmo usado para la encriptacion junto con el tipo de token, ejemplo 'JWT'
+
+1. *payload:* Contiene la informacion que queremos que esté en nuestro token
+
+3. *firma:* es el mecanismo que nos permite identificar si el token es valido o no
+
