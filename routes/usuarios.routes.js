@@ -2,7 +2,12 @@ const { Router} = require('express');
 const { check } = require('express-validator');
 const { index, store, update, destroy} = require('../controllers/usuarios.controller');
 const { existeRol, emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
-const { validarCampos } = require('../middlewares/validar-campos');
+// const { validarCampos } = require('../middlewares/validar-campos');
+// const { validarJWT } = require('../middlewares/validar-jwt');
+// const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
+
+// lo anterior que esta comentado es lo mismo a la siguiente linea
+const { validarCampos,validarJWT, tieneRole } = require('../middlewares/');
 const router = Router();
 // se coloca index, para pasar la referencia, no para ejecutar la funcion index
 router.get('/', index );
@@ -31,6 +36,9 @@ router.put('/:id',[
 ], update);
 
 router.delete('/:id',[
+    validarJWT,
+    // esAdminRole,
+    tieneRole('ADMINISTRADOR','VENTAS'),
     check('id', 'No es un ID Valido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     validarCampos

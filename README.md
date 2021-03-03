@@ -20,6 +20,8 @@ si se instala un paquete indicando que es de tipo save, sera un paquete de produ
 
 5. *npm install express-validator* tiene gran cantidad de validaciones, las cuales se pueden usar como middleware
 
+6. *npm install jsonwebtoken*: para el manejo de token
+
 ## Conexion de base de datos mongo remota
 
 este proyecto realiza conexion con mongo atlas desde la pagina <https://www.mongodb.com/cloud/atlas> accedi como con mi cuenta google.

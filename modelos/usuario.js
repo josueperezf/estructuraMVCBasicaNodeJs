@@ -41,7 +41,9 @@ UsuarioSchema.methods.toJSON = function(){
      * la primera es __v para la version, lo cual no se quiere enviar al frontend, lo segundo es el password que tampoco se quiere enviar
      * los ...usuario significa que despues de extrarle el __v y el password, lo que quede lo asigne a una variable llamada usuario
      */
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario} = this.toObject();
+    // mongo me genera el id, llamado _id, pero no quiero enviar ese nombre al frontend, para ello, remuevo la propiedad y agrego una nueva pero con otro nombre
+    usuario.uid=_id;
     return usuario;
 }
 

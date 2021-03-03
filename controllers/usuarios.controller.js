@@ -59,8 +59,11 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
     const {id} =  req.params;
+    // cuando se valida el token, al notar que es valido, la funcion validarJWT agrega al req el id del usuario, lo hace con el nombre uid
+    // const uid = req.uid; ---> esto existia pero fernando luego lo quito para que no retornara el id del usuario sino todos sus datos
     // para eliminar fisicamente
     // const usuario = await Usuario.findByIdAndDelete(id);
+    // const usuarioAutenticado = req.usuario;
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
     res.json({
         mensaje:'soy destroy',
