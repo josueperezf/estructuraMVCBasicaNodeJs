@@ -2,6 +2,13 @@
 remote host ``` https://restserver-basica-node.herokuapp.com/api/usuarios?limite=1 ```
 
 si entramos a nuestra url de heroku y no esta o aparece unas ZzZz es que heroku pauso nuestra app no estarla usando desde hace tiempo, para ello debemos ingresar a nuestra cuenta de heroku, ir a nuestra aplicacion y seleccionar open app, con ello se activa nuestra app nuevamente
+
+## VER LOGS HEROKU
+
+1. Para ver los ultimos 100 logs: ``` heroku logs -n 100 ```
+
+2. Para ver los ultimos 100 logs y se mantenga esuchando para que enseñe los nuevos logs que vayan generandose ``` heroku logs -n 100 --tail ```
+
 ## Notas
 
 1. *Middleware:* en node identificamos que hay un middleware, cuando se utiliza lo siguiente app.use(xxx), lo que esta dentro de los parentesis es un middleware
