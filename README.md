@@ -1,7 +1,10 @@
 ## infomacion general
+
 remote host ``` https://restserver-basica-node.herokuapp.com/api/usuarios?limite=1 ```
 
 si entramos a nuestra url de heroku y no esta o aparece unas ZzZz es que heroku pauso nuestra app no estarla usando desde hace tiempo, para ello debemos ingresar a nuestra cuenta de heroku, ir a nuestra aplicacion y seleccionar open app, con ello se activa nuestra app nuevamente
+
+informacion del consumo con postman <https://documenter.getpostman.com/view/1818339/Tz5jeLZY#d92832ed-08c4-4c7a-9446-4c65530b05d2>
 
 ## VER LOGS HEROKU
 
