@@ -29,6 +29,8 @@ si se instala un paquete indicando que es de tipo save, sera un paquete de produ
 
 6. *npm install jsonwebtoken*: para el manejo de token
 
+7. *npm install google-auth-library --save* para realizar la validacion de autenticacion con google
+
 ## Conexion de base de datos mongo remota
 
 este proyecto realiza conexion con mongo atlas desde la pagina <https://www.mongodb.com/cloud/atlas> accedi como con mi cuenta google.
@@ -51,3 +53,31 @@ el inicio de sesion para maximo 5000 usuarios, esta bien, requiere un mejor equi
 
 3. *firma:* es el mecanismo que nos permite identificar si el token es valido o no
 
+
+## autenticacion con google
+
+<https://developers.google.com/identity/sign-in/web/sign-in>
+
+- Integracion backend
+
+<https://developers.google.com/identity/sign-in/web/backend-auth>
+
+1. En la documentacion nos va a pedir que creemos credenciales, en la seccion de crear URI, colocaremos las url desde las cuales daremos acceso a nuestro app, para este caso es localhost y https://restserver-basica-node.herokuapp.com/
+
+2. en *URI de redireccionamiento autorizados* no colocamos nada
+
+3. luego de estos le damos crear y nos aparecera un modal con las credenciales, Vamos al archivo .env de nuestro proyecto y creamos una variable llamada: GOOGLE_CLIENT_ID= con un valor de client id que nos da google
+
+4. <https://console.developers.google.com/apis/credentials/oauthclient/1011905550160-gss04070g4lk42nm3tbqdooati99mpr8.apps.googleusercontent.com?project=opticav>
+
+5. en nuestro backend debemos crear un endpoint
+
+6. se creo un endpoint para el logea, 
+
+6. creamos un helper *helpers/google-verify.js* con la sugerencia que da google para node, ademas usamos las variables que definimos en los .env y unas mejoras para exportarlo
+
+- Integracion Fontend
+
+<https://developers.google.com/identity/sign-in/web/sign-in>
+
+ cuando la persona inicia session google da un token
