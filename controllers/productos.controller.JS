@@ -12,12 +12,12 @@ const index = async (req = request, res=response) => {
         Producto.find(query).skip(desde).limit(Number(limite)).populate('usuario', 'nombre').populate('categoria', 'nombre'),
         Producto.countDocuments(query)
     ]);
+    
     res.json({
         total,
         productos,
     });
 }
-
 const store = async (req = request, res=response) => {
     // con la siguiente linea saco los parametros que puede que me envien pero no necesito, ya que yo se los asigno por el token
     const { estado, usuario, ...body}  = req.body;

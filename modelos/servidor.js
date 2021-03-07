@@ -49,5 +49,4 @@ class Servidor {
     }
 }
 
-
 module.exports = Servidor;
