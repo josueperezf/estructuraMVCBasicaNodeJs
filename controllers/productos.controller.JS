@@ -2,7 +2,7 @@ const { response, request } = require("express");
 const { Producto } = require("../modelos");
 
 // borrar categoria - estado a false
-const index = async (req, res=response) => {
+const indexProducto = async (req, res=response) => {
     // parametros que puedan pasar, ejemplo ?pag=2 etc
     // el skip es para decir que quiero del cero al dos, si el desde fuera un 10, entonces quiero que la base de datos me traiga del 10 al 12,
     const {limite=2, desde = 0} = req.query;
@@ -18,7 +18,7 @@ const index = async (req, res=response) => {
         productos,
     });
 }
-const store = async (req, res=response) => {
+const storeProducto = async (req, res=response) => {
     // con la siguiente linea saco los parametros que puede que me envien pero no necesito, ya que yo se los asigno por el token
     const { estado, usuario, ...body}  = req.body;
 
@@ -46,7 +46,7 @@ const store = async (req, res=response) => {
     });
 }
 
-const show = async (req, res=response) => {
+const showProducto = async (req, res=response) => {
     const {id} =  req.params;
     const producto = await Producto.findById(id).populate('usuario', 'nombre').populate('categoria', 'nombre');
     res.status(200).json({
@@ -54,7 +54,7 @@ const show = async (req, res=response) => {
     });
 }
 
-const update = async (req, res=response) => {
+const updateProducto = async (req, res=response) => {
     const { id} =  req.params;
     
     const data = {
@@ -71,7 +71,7 @@ const update = async (req, res=response) => {
     });
 }
 
-const destroy = async (req, res=response) => {
+const destroyProducto = async (req, res=response) => {
     const { id} =  req.params;
     const query = {estado:false};
     const producto = await Producto.findByIdAndUpdate(id,query, {new:true});
@@ -81,9 +81,9 @@ const destroy = async (req, res=response) => {
 }
 
 module.exports = {
-    index,
-    store,
-    show,
-    update,
-    destroy
+    indexProducto,
+    storeProducto,
+    showProducto,
+    updateProducto,
+    destroyProducto
 };

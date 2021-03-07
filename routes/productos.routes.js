@@ -1,18 +1,18 @@
 const { Router} = require('express');
 const { check } = require('express-validator');
 const { validarCampos, validarJWT, esAdminRole } = require('../middlewares/');
-const { store, index, show, update, destroy } = require('../controllers/productos.controller');
+const { storeProducto, indexProducto, showProducto, updateProducto, destroyProducto } = require('../controllers/productos.controller');
 const { existeCategoriaPorId, existeProductoPorId } = require('../helpers/db-validators');
 const router = Router();
 // listar productos
-router.get('/',index);
+router.get('/',indexProducto);
 
 // obtener una Producto por id, se necesita crear una validacion personalizada, existeProducto, crearlo en helpers
 router.get('/:id', [
     check('id', 'No es un id valido').isMongoId(),
     check('id').custom(existeProductoPorId),
     validarCampos
-],show);
+],showProducto);
 
 // crear una Producto, solo para personas que tengan token
 router.post('/',[
@@ -21,7 +21,7 @@ router.post('/',[
     check('categoria', 'No es un id valido').isMongoId(),
     check('categoria').custom(existeCategoriaPorId ),
     validarCampos
-], store );
+], storeProducto );
 
 // actualizar Producto por id
 router.put('/:id',[
@@ -30,7 +30,7 @@ router.put('/:id',[
     check('categoria').custom(existeCategoriaPorId ),
     validarJWT,
     validarCampos
-],update);
+],updateProducto);
 
 // Borrar una Producto logicamente - solo ADMINISTRADOR PUEDE BORRAR
 router.delete('/:id',[
@@ -39,7 +39,7 @@ router.delete('/:id',[
     check('id', 'No es un id valido').isMongoId(),
     check('id').custom(existeProductoPorId),
     validarCampos
-], destroy);
+], destroyProducto);
 
 
 module.exports = router;
