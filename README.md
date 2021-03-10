@@ -23,6 +23,8 @@ informacion del consumo con postman <https://documenter.getpostman.com/view/1818
     - git commit -am 'disable node_modules cache' --allow-empty
     - git push heroku master
 
+3. *heroku* cuando hacemos un deploy nuevo, 'subimos nuestro codigo a heroku' va a borrar todo lo que no sea parte del repositorio, mejor dicho a lo que git no le haga seguimiento, si esto lo hacemos en un servidor no heroku, no tendriamos problemas, ya que las imagenes no se borrarian, para este ejemplo usaremos 
+
 ## plugins basicos
 
 si se instala un paquete indicando que es de tipo save, sera un paquete de produccion, si decimos que es de tipo *--save-dev* es que ese paquete nos sirve solo cuando estemos programando, que cuando subamos codigos al servidor no se instalaran alla, ejemplo nodemon, nos sirve para que compile y demas, pero en produccion no nos sirve de nada
@@ -40,6 +42,10 @@ si se instala un paquete indicando que es de tipo save, sera un paquete de produ
 6. *npm install jsonwebtoken*: para el manejo de token
 
 7. *npm install google-auth-library --save* para realizar la validacion de autenticacion con google
+
+8. *npm i express-fileupload* sirve para la carga del archivo, posee un middleware, lo colocamos en el servidor.js, recordemos que todo plugin que tenga el app.use() es un middleware
+
+9. *npm install uuid* permite generar id unicos, se instala y se usa como 'CommonJS syntax' para requerirlo
 
 ## Conexion de base de datos mongo remota
 

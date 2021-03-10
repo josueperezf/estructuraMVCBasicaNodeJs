@@ -36,10 +36,20 @@ const existeProductoPorId = async (id = '')=>{
     }
 }
 
+// validar colecciones permitidas
+const coleccionesPermitidas = async (coleccion = '', colecciones = [])=>{
+    if(!colecciones.includes(coleccion)) {
+        throw new Error(`La coleccion ${coleccion} no es una coleccion permitida`);
+    }
+    // podriamos colocar return true en todas las funciones
+    return true;
+}
+
 module.exports = {
     existeRol,
     emailExiste,
     existeUsuarioPorId,
     existeCategoriaPorId,
-    existeProductoPorId
+    existeProductoPorId,
+    coleccionesPermitidas
 };
