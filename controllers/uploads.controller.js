@@ -146,7 +146,7 @@ const actualizarImagenCloudinary = async (req, res = response)=> {
 
 module.exports = {
     cargarArchivo,
-    actualizarImagen,
+    // actualizarImagen,
     mostrarImagen,
     actualizarImagenCloudinary
 }

@@ -1,7 +1,9 @@
 const { Router} = require('express');
 const { check } = require('express-validator');
 const { validarCampos, validarArchivoParaSubir } = require('../middlewares/');
-const { cargarArchivo, actualizarImagen, mostrarImagen, actualizarImagenCloudinary } = require('../controllers/uploads.controller');
+const { cargarArchivo,
+    // actualizarImagen,
+    mostrarImagen, actualizarImagenCloudinary } = require('../controllers/uploads.controller');
 const { coleccionesPermitidas} = require('../helpers');
 
 const router = Router();
