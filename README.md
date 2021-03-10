@@ -47,6 +47,8 @@ si se instala un paquete indicando que es de tipo save, sera un paquete de produ
 
 9. *npm install uuid* permite generar id unicos, se instala y se usa como 'CommonJS syntax' para requerirlo
 
+10. *npm i cloudinary* sirve para alojar y personalizar las imagenes que suban lo usuarios sobre los productos o imagenes de perfil. la documentacion oficial esta en <https://cloudinary.com/>
+
 ## Conexion de base de datos mongo remota
 
 este proyecto realiza conexion con mongo atlas desde la pagina <https://www.mongodb.com/cloud/atlas> accedi como con mi cuenta google.
@@ -97,3 +99,23 @@ el inicio de sesion para maximo 5000 usuarios, esta bien, requiere un mejor equi
 <https://developers.google.com/identity/sign-in/web/sign-in>
 
  cuando la persona inicia session google da un token
+
+## Manejo de cloudinary para subir nuestras images a su servidor
+
+Pasos
+
+1. hay muchas formas pero para este ejemplo instalaremos *npm i cloudinary*
+
+2. crearemos una cuenta en <https://cloudinary.com/> si no la tenemos
+
+3.  luego de estar registrados nos llevara a esta ventana <https://cloudinary.com/console/c-6b509865b49f0e2c03d7aba9e32891/welcome>, donde nos enseñara nuestras credenciales
+
+        
+        Cloud name: --> Nombre de la nube:	    josueperezf
+        API Key:	--> Clave API:              144764244564265
+        API Secret:	-> Secreto de API:          liAql-624pHxPw27uqwitIl0VAk
+        API Environment variable:	--> Variable de entorno API
+        CLOUDINARY_URL=cloudinary:
+
+        -  API Environment variable: nos sirve para la autenticacion y asi mismo subir el contenido a dicho hosting, por ente, estas credenciales las debemos de pegar en nuestro .env del backend
+        

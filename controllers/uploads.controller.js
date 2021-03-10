@@ -1,9 +1,13 @@
 const path = require('path');
 const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+// con la siguiente linea nos autenticamos pasandole la variable de entorno
+cloudinary.config(process.env.CLOUDINARY_URL);
 const { response } = require("express");
 const { subirArchivo } = require('../helpers');
 const { Usuario, Producto } = require('../modelos');
 
+// cargar archivo en mi servidor local, sin mas,no registra nada en base de datos ni nada
 const cargarArchivo = async (req, res = response)=> {
     // la siguiente seccion contenido de esta seccion lo copie y pegue desde el ejemplo del plugin de su repo oficial https://github.com/richardgirges/express-fileupload/blob/master/example/server.js
     
@@ -23,7 +27,7 @@ const cargarArchivo = async (req, res = response)=> {
         });
     }
 }
-
+/*
 const actualizarImagen = async (req, res = response)=> {
     const { id, coleccion } = req.params;
     let modelo;
@@ -64,7 +68,7 @@ const actualizarImagen = async (req, res = response)=> {
         });
     }
 }
-
+*/
 const mostrarImagen = async (req, res = response)=> {
     const { id, coleccion } = req.params;
     let modelo;
@@ -102,8 +106,47 @@ const mostrarImagen = async (req, res = response)=> {
     //}
 }
 
+
+const actualizarImagenCloudinary = async (req, res = response)=> {
+    const { id, coleccion } = req.params;
+    let modelo;
+    switch (coleccion) {
+        case 'usuarios':
+            modelo = await Usuario.findById(id);
+            if(!modelo) {
+                return res.status(400).json({ msg: `No existe un usuario con el id: ${id}` });
+            }
+            break;
+        case 'productos':
+            modelo = await Producto.findById(id);
+            if(!modelo) {
+                return res.status(400).json({ msg: `No existe un producto con el id: ${id}` });
+            }
+            break;
+        default:
+            return res.json({ msg: 'Se me olvido validar esto' });
+            break;
+    }
+    // Limpiar imagenes existente
+    if(modelo.img) {
+        const nombreArr = modelo.img.split('/');
+        const nombre    = nombreArr[nombreArr.length -1];
+        // public_id seria el nombre de la imagen sin la extension
+        const [public_id]        = nombre.split('.');
+        // hay que borrar la imagen
+        // console.log(public_id);
+        cloudinary.uploader.destroy(public_id);
+    }
+    const { tempFilePath } = req.files.archivo;
+    const {secure_url} = await cloudinary.uploader.upload(tempFilePath);
+    modelo.img = secure_url;
+    await modelo.save();
+    res.json(modelo);
+}
+
 module.exports = {
     cargarArchivo,
     actualizarImagen,
-    mostrarImagen
+    mostrarImagen,
+    actualizarImagenCloudinary
 }
